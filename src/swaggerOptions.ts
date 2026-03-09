@@ -30,11 +30,7 @@ export const swaggerOptions = {
           name: "Authorization",
           description: "Put your accessToken here ",
         },
-        // bearerAuth: {
-        //   type: "http",
-        //   scheme: "bearer",
-        //   bearerFormat: "JWT",
-        // },
+    
       },
     },
     security: [
