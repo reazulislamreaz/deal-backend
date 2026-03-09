@@ -1,16 +1,23 @@
 import multer from "multer";
-import path from "path";
 
-const storage = multer.diskStorage({
-    destination: function (req, file, cb) {
-        cb(null, path.join(process.cwd(), "uploads"))
-    },
-    filename: function (req, file, cb) {
+const allowedTypes = [
+  "image/jpg",
+  "image/jpeg",
+  "image/png",
+  "image/webp",
+  // PDF
+  "application/pdf",
 
-        cb(null, file.originalname)
-    }
-})
+  // CSV (IMPORTANT)
+  "text/csv",
+  "application/vnd.ms-excel",
+];
 
-const uploader = multer({ storage: storage })
-
-export default uploader;
+export const uploader = multer({
+  storage: multer.memoryStorage(),
+  limits: { fileSize: 20 * 1024 * 1024 },
+  fileFilter: (_req, file, cb) => {
+    if (allowedTypes.includes(file.mimetype)) cb(null, true);
+    else cb(new Error("Invalid file type"));
+  },
+});

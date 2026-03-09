@@ -2,11 +2,13 @@ import { Router } from 'express';
 import authRoute from './app/modules/auth/auth.route';
 import userRoute from './app/modules/user/user.route';
 import bookingRoute from './app/modules/booking/booking.route';
+import uploadRoute from './app/modules/upload/upload.route';
 
 
 const appRouter = Router();
 
 const moduleRoutes = [
+    { path: "/upload", route: uploadRoute },
     { path: "/booking", route: bookingRoute },
     { path: '/auth', route: authRoute },
     { path: "/user", route: userRoute }
