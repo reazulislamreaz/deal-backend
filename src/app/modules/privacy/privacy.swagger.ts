@@ -15,7 +15,7 @@ export const privacySwaggerDocs = {
               properties: {
                 type: {
                   type: "string",
-                  enum: ["privacy", "terms", "about", "faq"],
+                  enum: ["privacy", "terms", "about"],
                   example: "privacy",
                 },
                 title: {
@@ -54,7 +54,7 @@ export const privacySwaggerDocs = {
           required: true,
           schema: {
             type: "string",
-            enum: ["privacy", "terms", "about", "faq"],
+            enum: ["privacy", "terms", "about"],
           },
           example: "privacy",
         },
