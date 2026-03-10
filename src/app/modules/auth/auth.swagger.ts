@@ -60,7 +60,7 @@ export const authSwaggerDocs = {
       tags: ["Auth"],
       summary: "Get logged-in user's profile",
       description: "Fetch the authenticated user's profile details.",
-      security: [{ AuthorizationToken: [] }],
+      security: [{ bearerAuth: [] }],
       responses: {
         200: { description: "Profile data retrieved successfully" },
         401: { description: "Unauthorized" },

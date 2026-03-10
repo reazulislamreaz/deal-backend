@@ -3,7 +3,7 @@ export type TAccount = {
     password: string;
     isDeleted?: boolean;
     accountStatus?: "ACTIVE" | "INACTIVE" | "SUSPENDED";
-    role?: "USER" | "ADMIN",
+    role?: "INVESTOR" | "ADMIN",
     isVerified?: boolean,
 }
 
@@ -19,5 +19,5 @@ export type TLoginPayload = {
 
 export type TJwtUser = {
     email: string,
-    role?: "USER" | "ADMIN",
+    role?: "INVESTOR" | "ADMIN",
 }

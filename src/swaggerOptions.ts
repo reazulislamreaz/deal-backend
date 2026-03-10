@@ -15,26 +15,25 @@ export const swaggerOptions = {
     paths: {
       ...authSwaggerDocs,
       ...userSwaggerDocs,
-
-      ...uploadSwaggerDocs,},
+      ...uploadSwaggerDocs,
+    },
     servers:
       configs.env === "production"
         ? [{ url: "https://live-url.com" }, { url: "http://localhost:5000" }]
         : [{ url: "http://localhost:5000" }, { url: "https://live-url.com" }],
     components: {
       securitySchemes: {
-        AuthorizationToken: {
+        bearerAuth: {
           type: "apiKey",
           in: "header",
           name: "Authorization",
           description: "Put your accessToken here ",
         },
-    
       },
     },
     security: [
       {
-        AuthorizationToken: [],
+        bearerAuth: [],
       },
     ],
   },
