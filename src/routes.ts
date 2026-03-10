@@ -3,16 +3,18 @@ import authRoute from "./app/modules/auth/auth.route";
 import userRoute from "./app/modules/user/user.route";
 import uploadRoute from "./app/modules/upload/upload.route";
 import machineRoute from "./app/modules/machine/machine.route";
-import investorRoute from './app/modules/investor/investor.route';
+import investorRoute from "./app/modules/investor/investor.route";
+import maintenance_route from "./app/modules/maintenance/maintenance.route";
 
 const appRouter = Router();
 
 const moduleRoutes = [
-    { path: "/investor", route: investorRoute },
+  { path: "/investor", route: investorRoute },
   { path: "/machine", route: machineRoute },
   { path: "/upload", route: uploadRoute },
   { path: "/auth", route: authRoute },
   { path: "/user", route: userRoute },
+  { path: "/maintenance", route: maintenance_route },
 ];
 
 moduleRoutes.forEach((route) => appRouter.use(route.path, route.route));

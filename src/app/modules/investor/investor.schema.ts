@@ -5,12 +5,12 @@ const investor_schema = new Schema<T_Investor>(
   {
     user_id: {
       type: Schema.Types.ObjectId,
-      ref: "User",
+      ref: "user",
       required: true,
     },
     machine_id: {
       type: Schema.Types.ObjectId,
-      ref: "Machine",
+      ref: "machine",
       required: true,
     },
     investment_amount: {
@@ -35,4 +35,4 @@ const investor_schema = new Schema<T_Investor>(
   },
 );
 
-export const investor_model = model<T_Investor>("Investment", investor_schema);
+export const investor_model = model<T_Investor>("investment", investor_schema);

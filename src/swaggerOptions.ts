@@ -5,6 +5,7 @@ import { userSwaggerDocs } from "./app/modules/user/user.swagger";
 import { uploadSwaggerDocs } from "./app/modules/upload/upload.swagger";
 import { machineSwaggerDocs } from "./app/modules/machine/machine.swagger";
 import { investorSwaggerDocs } from "./app/modules/investor/investor.swagger";
+import { maintenanceSwaggerDocs } from "./app/modules/maintenance/maintenance.swagger";
 
 export const swaggerOptions = {
   definition: {
@@ -18,9 +19,10 @@ export const swaggerOptions = {
       ...authSwaggerDocs,
       ...userSwaggerDocs,
       ...uploadSwaggerDocs,
-    
-            ...machineSwaggerDocs,
-            ...investorSwaggerDocs,},
+      ...machineSwaggerDocs,
+      ...investorSwaggerDocs,
+      ...maintenanceSwaggerDocs,
+    },
     servers:
       configs.env === "production"
         ? [{ url: "https://live-url.com" }, { url: "http://localhost:5000" }]
