@@ -29,4 +29,8 @@ export const configs = {
     cloud_api_key: process.env.CLOUD_API_KEY,
     cloud_api_secret: process.env.CLOUD_API_SECRET,
   },
+  seed: {
+    admin_email: process.env.ADMIN_EMAIL,
+    admin_password: process.env.ADMIN_PASSWORD,
+  },
 };

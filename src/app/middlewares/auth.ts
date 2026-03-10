@@ -4,7 +4,7 @@ import { configs } from "../configs";
 import { jwtHelpers, JwtPayloadType } from "../utils/JWT";
 import { Account_Model } from "../modules/auth/auth.schema";
 
-type Role = "ADMIN" | "INVESTOR";
+type Role = "ADMIN" | "INVESTOR" | "USER";
 
 const auth = (...roles: Role[]) => {
   return async (req: Request, res: Response, next: NextFunction) => {

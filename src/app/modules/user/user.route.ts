@@ -8,7 +8,7 @@ const userRoute = Router();
 
 userRoute.patch(
   "/update-profile",
-  auth("ADMIN", "INVESTOR"),
+  auth("ADMIN", "USER", "INVESTOR"),
   RequestValidator(user_validations.update_user),
   user_controllers.update_profile,
 );
