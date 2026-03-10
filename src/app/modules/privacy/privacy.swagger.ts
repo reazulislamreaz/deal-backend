@@ -11,7 +11,7 @@ export const privacySwaggerDocs = {
           "application/json": {
             schema: {
               type: "object",
-              required: ["type", "title", "description"],
+              required: ["type", "title", "description", "photo"],
               properties: {
                 type: {
                   type: "string",
@@ -24,9 +24,9 @@ export const privacySwaggerDocs = {
                 },
                 description: {
                   type: "string",
-                  example: "<p>Your privacy content...</p>",
+                  example: "Your privacy content...",
                 },
-                image: {
+                photo: {
                   type: "string",
                   example: "https://cdn.site/privacy.png",
                 },

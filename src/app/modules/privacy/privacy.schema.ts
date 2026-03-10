@@ -18,7 +18,7 @@ const privacy_schema = new Schema<T_Privacy>(
       type: String,
       required: true,
     },
-    image: {
+    photo: {
       type: String,
       default: null,
     },
