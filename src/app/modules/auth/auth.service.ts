@@ -33,7 +33,6 @@ const register_user_into_db = async (payload: TRegisterPayload) => {
     const accountPayload: TAccount = {
       email: payload.email,
       password: hashPassword,
-      lastPasswordChange: new Date(),
     };
     const newAccount = await Account_Model.create([accountPayload], {
       session,

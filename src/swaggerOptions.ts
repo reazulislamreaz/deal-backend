@@ -2,7 +2,6 @@ import path from "path";
 import { configs } from "./app/configs";
 import { authSwaggerDocs } from "./app/modules/auth/auth.swagger";
 import { userSwaggerDocs } from "./app/modules/user/user.swagger";
-import { bookingSwaggerDocs } from "./app/modules/booking/booking.swagger";
 import { uploadSwaggerDocs } from "./app/modules/upload/upload.swagger";
 
 export const swaggerOptions = {
@@ -17,9 +16,7 @@ export const swaggerOptions = {
       ...authSwaggerDocs,
       ...userSwaggerDocs,
 
-      ...bookingSwaggerDocs,
-    
-            ...uploadSwaggerDocs,},
+      ...uploadSwaggerDocs,},
     servers:
       configs.env === "production"
         ? [{ url: "https://live-url.com" }, { url: "http://localhost:5000" }]

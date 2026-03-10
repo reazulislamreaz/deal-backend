@@ -1,7 +1,6 @@
 export type TAccount = {
     email: string;
     password: string;
-    lastPasswordChange?: Date;
     isDeleted?: boolean;
     accountStatus?: "ACTIVE" | "INACTIVE" | "SUSPENDED";
     role?: "USER" | "ADMIN",

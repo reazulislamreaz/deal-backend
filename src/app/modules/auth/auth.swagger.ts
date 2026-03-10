@@ -14,7 +14,6 @@ export const authSwaggerDocs = {
               required: ["email", "number", "password", "name"],
               properties: {
                 email: { type: "string", example: "user@example.com" },
-                number: { type: "string", example: "+1234567890" },
                 password: { type: "string", example: "secret123" },
                 name: { type: "string", example: "John Doe" },
               },
