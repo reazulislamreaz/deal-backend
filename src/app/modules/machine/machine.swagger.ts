@@ -58,7 +58,30 @@ export const machineSwaggerDocs = {
     get: {
       tags: ["Machine"],
       summary: "Get all machines for web",
-      description: "Retrieve a list of all machines",
+      description: "Retrieve paginated list of machines",
+
+      parameters: [
+        {
+          name: "page",
+          in: "query",
+          description: "Page number",
+          required: false,
+          schema: {
+            type: "integer",
+            example: 1,
+          },
+        },
+        {
+          name: "limit",
+          in: "query",
+          description: "Number of machines per page",
+          required: false,
+          schema: {
+            type: "integer",
+            example: 10,
+          },
+        },
+      ],
 
       responses: {
         200: {
@@ -68,9 +91,34 @@ export const machineSwaggerDocs = {
               schema: {
                 type: "object",
                 properties: {
+                  success: {
+                    type: "boolean",
+                    example: true,
+                  },
                   message: {
                     type: "string",
                     example: "Machines retrieved successfully",
+                  },
+                  meta: {
+                    type: "object",
+                    properties: {
+                      page: {
+                        type: "number",
+                        example: 1,
+                      },
+                      limit: {
+                        type: "number",
+                        example: 10,
+                      },
+                      total: {
+                        type: "number",
+                        example: 42,
+                      },
+                      totalPage: {
+                        type: "number",
+                        example: 5,
+                      },
+                    },
                   },
                   data: {
                     type: "array",

@@ -79,4 +79,78 @@ export const userSwaggerDocs = {
       },
     },
   },
+  // get all
+  "/api/v1/user": {
+    get: {
+      tags: ["User"],
+      summary: "Get all users",
+      security: [{ bearerAuth: [] }],
+
+      parameters: [
+        {
+          name: "page",
+          in: "query",
+          schema: { type: "number", example: 1 },
+        },
+        {
+          name: "limit",
+          in: "query",
+          schema: { type: "number", example: 10 },
+        },
+      ],
+
+      responses: {
+        200: {
+          description: "Users retrieved successfully",
+        },
+      },
+    },
+  },
+  // get specific
+  "/api/v1/user/{id}": {
+    get: {
+      tags: ["User"],
+      summary: "Get user details",
+      security: [{ bearerAuth: [] }],
+
+      parameters: [
+        {
+          name: "id",
+          in: "path",
+          required: true,
+          schema: { type: "string" },
+        },
+      ],
+
+      responses: {
+        200: {
+          description: "User details retrieved successfully",
+        },
+      },
+    },
+  },
+  // delete user
+  "/api/v1/user/suspend/{id}": {
+    patch: {
+      tags: ["User"],
+      summary: "Suspend user",
+      description: "Soft delete user by changing status to SUSPENDED",
+      security: [{ bearerAuth: [] }],
+
+      parameters: [
+        {
+          name: "id",
+          in: "path",
+          required: true,
+          schema: { type: "string" },
+        },
+      ],
+
+      responses: {
+        200: {
+          description: "User suspended successfully",
+        },
+      },
+    },
+  },
 };
