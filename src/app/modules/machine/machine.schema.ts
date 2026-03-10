@@ -38,7 +38,7 @@ const machineSchema = new Schema<IMachine>(
   },
   {
     timestamps: true,
-  }
+  },
 );
 
-export const Machine_Model = model<IMachine>("Machine", machineSchema);
+export const Machine_Model = model<IMachine>("machine", machineSchema);

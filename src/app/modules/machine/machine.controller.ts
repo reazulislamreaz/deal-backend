@@ -16,13 +16,14 @@ const createMachine = catchAsync(async (req, res) => {
 });
 
 const getAllMachines = catchAsync(async (req, res) => {
-  const result = await Machine_Service.getAllMachinesFromDB();
+  const result = await Machine_Service.getAllMachinesFromDB(req.query);
 
   manageResponse(res, {
     statusCode: httpStatus.OK,
     success: true,
     message: "Machines retrieved successfully",
-    data: result,
+    data: result.data,
+    meta: result.meta,
   });
 });
 

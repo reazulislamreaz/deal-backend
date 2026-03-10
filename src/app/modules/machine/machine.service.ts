@@ -6,8 +6,28 @@ const createMachineIntoDB = async (payload: IMachine) => {
   return machine;
 };
 
-const getAllMachinesFromDB = async () => {
-  return Machine_Model.find().sort({ createdAt: -1 });
+const getAllMachinesFromDB = async (query: Record<string, unknown>) => {
+  const page = Number(query.page) || 1;
+  const limit = Number(query.limit) || 10;
+
+  const skip = (page - 1) * limit;
+
+  const machines = await Machine_Model.find()
+    .sort({ createdAt: -1 })
+    .skip(skip)
+    .limit(limit);
+
+  const total = await Machine_Model.countDocuments();
+
+  return {
+    meta: {
+      page,
+      limit,
+      total,
+      totalPage: Math.ceil(total / limit),
+    },
+    data: machines,
+  };
 };
 
 const getSingleMachineFromDB = async (id: string) => {
