@@ -3,8 +3,7 @@ export const privacySwaggerDocs = {
     post: {
       tags: ["privacy"],
       summary: "Create or update privacy content",
-      description:
-        "Create or update privacy, terms, about or faq content based on type",
+      description: "Create or update privacy, terms or about  based on type",
       requestBody: {
         required: true,
         content: {
