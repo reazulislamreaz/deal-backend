@@ -135,4 +135,42 @@ export const investorSwaggerDocs = {
       },
     },
   },
+  // dashboard
+  "/api/v1/investor/dashboard": {
+    get: {
+      tags: ["Investor"],
+      summary: "Get investor dashboard",
+      description: "Retrieve investor dashboard statistics",
+
+      responses: {
+        200: {
+          description: "Dashboard retrieved successfully",
+          content: {
+            "application/json": {
+              schema: {
+                type: "object",
+                properties: {
+                  success: { type: "boolean", example: true },
+                  message: {
+                    type: "string",
+                    example: "Investor dashboard retrieved successfully",
+                  },
+                  data: {
+                    type: "object",
+                    properties: {
+                      totalInvested: { type: "number", example: 25000 },
+                      activeMachines: { type: "number", example: 3 },
+                      totalEarnings: { type: "number", example: 1830 },
+                      thisMonthProfit: { type: "number", example: 520 },
+                      maintenanceCost: { type: "number", example: 410 },
+                    },
+                  },
+                },
+              },
+            },
+          },
+        },
+      },
+    },
+  },
 };

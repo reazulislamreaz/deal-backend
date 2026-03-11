@@ -70,10 +70,28 @@ const update_investor = catchAsync(async (req, res) => {
     data: result,
   });
 });
+
+const getInvestorDashboard = catchAsync(async (req, res) => {
+  const userId = req.user?.id;
+
+  console.log(req);
+
+  const result = await investor_service.getInvestorDashboardFromDB(
+    userId as string,
+  );
+
+  manageResponse(res, {
+    statusCode: httpStatus.OK,
+    success: true,
+    message: "Investor dashboard retrieved successfully",
+    data: result,
+  });
+});
 export const investor_controller = {
   create_new_investor,
   get_all_investors,
   get_single_investor,
   suspend_investor,
   update_investor,
+  getInvestorDashboard,
 };

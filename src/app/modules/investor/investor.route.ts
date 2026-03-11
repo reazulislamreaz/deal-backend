@@ -24,5 +24,7 @@ investor_router.patch(
   RequestValidator(investor_validations.update),
   investor_controller.update_investor,
 );
+// dashboard
+investor_router.get("/dashboard", investor_controller.getInvestorDashboard);
 
 export default investor_router;

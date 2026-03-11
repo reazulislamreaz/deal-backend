@@ -8,6 +8,8 @@ import { investorSwaggerDocs } from "./app/modules/investor/investor.swagger";
 import { maintenanceSwaggerDocs } from "./app/modules/maintenance/maintenance.swagger";
 import { contactSwaggerDocs } from "./app/modules/contact/contact.swagger";
 import { privacySwaggerDocs } from "./app/modules/privacy/privacy.swagger";
+import { voteSwaggerDocs } from "./app/modules/vote/vote.swagger";
+import { machineRevenueSwaggerDocs } from "./app/modules/machineRevenue/machineRevenue.swagger";
 
 export const swaggerOptions = {
   definition: {
@@ -26,7 +28,9 @@ export const swaggerOptions = {
       ...maintenanceSwaggerDocs,
     
             ...contactSwaggerDocs,
-            ...privacySwaggerDocs,},
+            ...privacySwaggerDocs,
+            ...voteSwaggerDocs,
+            ...machineRevenueSwaggerDocs,},
     servers:
       configs.env === "production"
         ? [{ url: "https://live-url.com" }, { url: "http://localhost:5000" }]

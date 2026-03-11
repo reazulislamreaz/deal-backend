@@ -3,6 +3,8 @@ import { investor_model } from "./investor.schema";
 import { Account_Model } from "../auth/auth.schema";
 import { User_Model } from "../user/user.schema";
 import { Machine_Model } from "../machine/machine.schema";
+import { Types } from "mongoose";
+import { MachineRevenue_Model } from "../machineRevenue/machineRevenue.schema";
 
 const create_new_investor_into_db = async (req: Request) => {
   const {
@@ -106,10 +108,72 @@ const update_investor_into_db = async (id: string, payload: any) => {
   return result;
 };
 
+//
+const getInvestorDashboardFromDB = async (userId: string) => {
+  const investorObjectId = new Types.ObjectId(userId);
+
+  const investments = await investor_model.find({
+    investorId: investorObjectId,
+  });
+
+  const machineIds = investments.map((inv) => inv.machine_id);
+
+  const totalInvested = investments.reduce(
+    (sum, inv) => sum + inv.investment_amount,
+    0,
+  );
+
+  const activeMachines = await Machine_Model.countDocuments({
+    _id: { $in: machineIds },
+    status: "ACTIVE",
+  });
+
+  const revenueData = await MachineRevenue_Model.aggregate([
+    {
+      $match: {
+        machineId: { $in: machineIds },
+      },
+    },
+    {
+      $group: {
+        _id: null,
+        totalProfit: { $sum: "$profit" },
+        totalMaintenance: { $sum: "$maintenanceCost" },
+      },
+    },
+  ]);
+
+  const currentMonth = new Date().toISOString().slice(0, 7);
+
+  const monthlyRevenue = await MachineRevenue_Model.aggregate([
+    {
+      $match: {
+        machineId: { $in: machineIds },
+        month: currentMonth,
+      },
+    },
+    {
+      $group: {
+        _id: null,
+        profit: { $sum: "$profit" },
+      },
+    },
+  ]);
+
+  return {
+    totalInvested,
+    activeMachines,
+    totalEarnings: revenueData[0]?.totalProfit || 0,
+    thisMonthProfit: monthlyRevenue[0]?.profit || 0,
+    maintenanceCost: revenueData[0]?.totalMaintenance || 0,
+  };
+};
+
 export const investor_service = {
   create_new_investor_into_db,
   get_all_investors_from_db,
   get_single_investor_from_db,
   suspend_investor_from_db,
   update_investor_into_db,
+  getInvestorDashboardFromDB,
 };

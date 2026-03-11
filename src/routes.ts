@@ -5,14 +5,18 @@ import uploadRoute from "./app/modules/upload/upload.route";
 import machineRoute from "./app/modules/machine/machine.route";
 import investorRoute from "./app/modules/investor/investor.route";
 import maintenance_route from "./app/modules/maintenance/maintenance.route";
-import contactRoute from './app/modules/contact/contact.route';
-import privacyRoute from './app/modules/privacy/privacy.route';
+import contactRoute from "./app/modules/contact/contact.route";
+import privacyRoute from "./app/modules/privacy/privacy.route";
+import voteRoute from "./app/modules/vote/vote.route";
+import machineRevenueRoute from "./app/modules/machineRevenue/machineRevenue.route";
 
 const appRouter = Router();
 
 const moduleRoutes = [
-    { path: "/privacy", route: privacyRoute },
-    { path: "/contact", route: contactRoute },
+  { path: "/machine-revenue", route: machineRevenueRoute },
+  { path: "/vote", route: voteRoute },
+  { path: "/privacy", route: privacyRoute },
+  { path: "/contact", route: contactRoute },
   { path: "/investor", route: investorRoute },
   { path: "/machine", route: machineRoute },
   { path: "/upload", route: uploadRoute },
