@@ -111,10 +111,10 @@ const update_investor_into_db = async (id: string, payload: any) => {
 //
 const getInvestorDashboardFromDB = async (userId: string) => {
   const investorObjectId = new Types.ObjectId(userId);
-
   const investments = await investor_model.find({
     investorId: investorObjectId,
   });
+  console.log(investorObjectId , investments);
 
   const machineIds = investments.map((inv) => inv.machine_id);
 
