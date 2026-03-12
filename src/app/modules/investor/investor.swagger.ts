@@ -13,14 +13,12 @@ export const investorSwaggerDocs = {
                 "email",
                 "machine_id",
                 "investment_amount",
-                "ownership_percent",
                 "investment_proof",
               ],
               properties: {
                 email: { type: "string", example: "user@email.com" },
                 machine_id: { type: "string" },
                 investment_amount: { type: "number", example: 250 },
-                ownership_percent: { type: "number", example: 10 },
                 investment_proof: {
                   type: "string",
                   example: "https://cdn.com/proof.png",
@@ -107,10 +105,6 @@ export const investorSwaggerDocs = {
                 investment_amount: {
                   type: "number",
                   example: 500,
-                },
-                ownership_percent: {
-                  type: "number",
-                  example: 15,
                 },
                 investment_proof: {
                   type: "string",

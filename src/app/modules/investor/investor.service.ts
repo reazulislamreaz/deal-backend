@@ -7,13 +7,7 @@ import { Types } from "mongoose";
 import { MachineRevenue_Model } from "../machineRevenue/machineRevenue.schema";
 
 const create_new_investor_into_db = async (req: Request) => {
-  const {
-    email,
-    machine_id,
-    investment_amount,
-    ownership_percent,
-    investment_proof,
-  } = req.body;
+  const { email, machine_id, investment_amount, investment_proof } = req.body;
 
   const account = await Account_Model.findOne({
     email,
@@ -37,6 +31,17 @@ const create_new_investor_into_db = async (req: Request) => {
   if (!machine) {
     throw new Error("Machine not found");
   }
+
+  const machine_cost = machine.cost;
+
+  if (!machine_cost || machine_cost <= 0) {
+    throw new Error("Invalid machine cost");
+  }
+
+  // calculate ownership %
+  const ownership_percent = Number(
+    ((investment_amount / machine_cost) * 100).toFixed(4),
+  );
 
   account.role = "INVESTOR";
   await account.save();
@@ -114,7 +119,7 @@ const getInvestorDashboardFromDB = async (userId: string) => {
   const investments = await investor_model.find({
     investorId: investorObjectId,
   });
-  console.log(investorObjectId , investments);
+  console.log(investorObjectId, investments);
 
   const machineIds = investments.map((inv) => inv.machine_id);
 
