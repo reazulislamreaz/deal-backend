@@ -122,7 +122,6 @@ const getInvestorDashboardFromDB = async (userMail: string) => {
   const investments = await investor_model.find({
     user_id: userId,
   });
-  console.log("this is all", investorObjectId);
 
   const machineIds = investments.map((inv) => inv.machine_id);
 
