@@ -72,12 +72,11 @@ const update_investor = catchAsync(async (req, res) => {
 });
 
 const getInvestorDashboard = catchAsync(async (req, res) => {
-  const userId = req.user?.id;
+  const userMail = req.user?.email;
 
-  console.log(req);
 
   const result = await investor_service.getInvestorDashboardFromDB(
-    userId as string,
+    userMail as string,
   );
 
   manageResponse(res, {

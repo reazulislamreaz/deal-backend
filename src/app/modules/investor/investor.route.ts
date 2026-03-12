@@ -2,6 +2,7 @@ import { Router } from "express";
 import RequestValidator from "../../middlewares/request_validator";
 import { investor_controller } from "./investor.controller";
 import { investor_validations } from "./investor.validation";
+import auth from "../../middlewares/auth";
 
 const investor_router = Router();
 
@@ -12,7 +13,11 @@ investor_router.post(
 );
 
 // dashboard
-investor_router.get("/dashboard", investor_controller.getInvestorDashboard);
+investor_router.get(
+  "/dashboard",
+  auth("INVESTOR"),
+  investor_controller.getInvestorDashboard,
+);
 
 investor_router.get("/", investor_controller.get_all_investors);
 

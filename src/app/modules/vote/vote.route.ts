@@ -15,7 +15,7 @@ vote_router.post(
 
 vote_router.get(
   "/result/:maintenanceId",
-  auth("ADMIN"),
+  // auth("ADMIN", "INVESTOR"),
   vote_controller.get_vote_result,
 );
 

@@ -19,6 +19,10 @@ export const maintenanceSwaggerDocs = {
                   type: "string",
                   example: "Motor repair",
                 },
+                photo: {
+                  stye: "string",
+                  example: "https://static.vecteezy.com/vite/assets/photo-masthead-375-BoK_p8LG.webp",
+                },
                 cost: {
                   type: "number",
                   example: 250,

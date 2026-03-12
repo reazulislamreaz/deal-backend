@@ -47,7 +47,7 @@ const create_new_investor_into_db = async (req: Request) => {
   await account.save();
 
   const result = await investor_model.create({
-    user_id: user._id,
+    user_id: account._id,
     machine_id,
     investment_amount,
     ownership_percent,
@@ -114,12 +114,15 @@ const update_investor_into_db = async (id: string, payload: any) => {
 };
 
 //
-const getInvestorDashboardFromDB = async (userId: string) => {
+const getInvestorDashboardFromDB = async (userMail: string) => {
+  const user = await Account_Model.findOne({ email: userMail });
+
+  const userId = user?._id;
   const investorObjectId = new Types.ObjectId(userId);
   const investments = await investor_model.find({
-    investorId: investorObjectId,
+    user_id: userId,
   });
-  console.log(investorObjectId, investments);
+  console.log("this is all", investorObjectId);
 
   const machineIds = investments.map((inv) => inv.machine_id);
 

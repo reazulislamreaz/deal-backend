@@ -1,14 +1,12 @@
 import { maintenance_model } from "./maintenance.schema";
 
 const create_maintenance_into_db = async (payload: any) => {
-
   const result = await maintenance_model.create(payload);
 
   return result;
 };
 
 const get_all_maintenances_from_db = async (query: any) => {
-
   const page = Number(query.page) || 1;
   const limit = Number(query.limit) || 10;
   const skip = (page - 1) * limit;
@@ -36,31 +34,24 @@ const get_all_maintenances_from_db = async (query: any) => {
 };
 
 const get_single_maintenance_from_db = async (id: string) => {
-
-  const result = await maintenance_model
-    .findById(id)
-    .populate("machine_id");
+  const result = await maintenance_model.findById(id).populate("machine_id");
 
   return result;
 };
 
 const update_maintenance_into_db = async (id: string, payload: any) => {
-
-  const result = await maintenance_model.findByIdAndUpdate(
-    id,
-    payload,
-    { new: true }
-  );
+  const result = await maintenance_model.findByIdAndUpdate(id, payload, {
+    new: true,
+  });
 
   return result;
 };
 
 const delete_maintenance_from_db = async (id: string) => {
-
   const result = await maintenance_model.findByIdAndUpdate(
     id,
     { status: "DELETED" },
-    { new: true }
+    { new: true },
   );
 
   return result;
