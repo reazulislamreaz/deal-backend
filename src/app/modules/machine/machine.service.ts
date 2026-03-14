@@ -147,6 +147,7 @@ const getMyMachinesFromDB = async (
     return {
       machineId: machine._id,
       machineName: machine.name,
+      machinePhoto: machine.photo,
       location: machine.location,
       status: machine.status,
       totalPrice: machine.cost,
