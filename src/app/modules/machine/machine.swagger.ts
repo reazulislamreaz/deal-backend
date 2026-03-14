@@ -282,4 +282,129 @@ export const machineSwaggerDocs = {
     },
   },
   //
+  "/api/v1/machine/my-machines": {
+    get: {
+      tags: ["Machine"],
+      summary: "Get investor machines",
+      description:
+        "Retrieve machines where the authenticated investor has invested",
+
+      security: [
+        {
+          bearerAuth: [],
+        },
+      ],
+
+      parameters: [
+        {
+          name: "page",
+          in: "query",
+          description: "Page number",
+          required: false,
+          schema: {
+            type: "integer",
+            example: 1,
+          },
+        },
+        {
+          name: "limit",
+          in: "query",
+          description: "Number of machines per page",
+          required: false,
+          schema: {
+            type: "integer",
+            example: 10,
+          },
+        },
+      ],
+
+      responses: {
+        200: {
+          description: "Investor machines retrieved successfully",
+          content: {
+            "application/json": {
+              schema: {
+                type: "object",
+                properties: {
+                  success: {
+                    type: "boolean",
+                    example: true,
+                  },
+                  message: {
+                    type: "string",
+                    example: "My machines retrieved successfully",
+                  },
+                  meta: {
+                    type: "object",
+                    properties: {
+                      page: {
+                        type: "number",
+                        example: 1,
+                      },
+                      limit: {
+                        type: "number",
+                        example: 10,
+                      },
+                      total: {
+                        type: "number",
+                        example: 5,
+                      },
+                      totalPage: {
+                        type: "number",
+                        example: 1,
+                      },
+                    },
+                  },
+                  data: {
+                    type: "array",
+                    items: {
+                      type: "object",
+                      properties: {
+                        machineId: {
+                          type: "string",
+                          example: "65cfdc6d8e1234567890abcd",
+                        },
+                        machineName: {
+                          type: "string",
+                          example: "Premium Snack Machine",
+                        },
+                        location: {
+                          type: "string",
+                          example: "Downtown Mall - Floor 2",
+                        },
+                        status: {
+                          type: "string",
+                          example: "ACTIVE",
+                        },
+                        totalPrice: {
+                          type: "number",
+                          example: 10000,
+                        },
+                        yourInvestment: {
+                          type: "number",
+                          example: 2800,
+                        },
+                        ownershipPercent: {
+                          type: "number",
+                          example: 18.7,
+                        },
+                      },
+                    },
+                  },
+                },
+              },
+            },
+          },
+        },
+
+        401: {
+          description: "Unauthorized — Token missing or invalid",
+        },
+
+        404: {
+          description: "No machines found for this investor",
+        },
+      },
+    },
+  },
 };

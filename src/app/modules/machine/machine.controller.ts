@@ -62,6 +62,26 @@ const deleteMachine = catchAsync(async (req, res) => {
     data: result,
   });
 });
+const getMyMachines = catchAsync(async (req, res) => {
+  const userId = req.user?.email;
+
+  if (!userId) {
+    console.log("sorry");
+  }
+
+  const result = await Machine_Service.getMyMachinesFromDB(
+    userId as any,
+    req.query,
+  );
+
+  manageResponse(res, {
+    statusCode: httpStatus.OK,
+    success: true,
+    message: "My machines retrieved successfully",
+    data: result.data,
+    meta: result.meta,
+  });
+});
 
 export const Machine_Controller = {
   createMachine,
@@ -69,4 +89,5 @@ export const Machine_Controller = {
   getSingleMachine,
   updateMachine,
   deleteMachine,
+  getMyMachines,
 };
