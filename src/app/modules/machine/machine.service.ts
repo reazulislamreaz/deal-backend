@@ -67,33 +67,7 @@ const getAllMachinesFromDB = async (query: Record<string, unknown>) => {
     data: machinesWithOwnership,
   };
 };
-// const getAllMachinesFromDB = async (query: Record<string, unknown>) => {
-//   const page = Number(query.page) || 1;
-//   const limit = Number(query.limit) || 10;
 
-//   const skip = (page - 1) * limit;
-
-//   const machines = await Machine_Model.find()
-//     .sort({ createdAt: -1 })
-//     .skip(skip)
-//     .limit(limit);
-
-//   const total = await Machine_Model.countDocuments();
-
-//   return {
-//     meta: {
-//       page,
-//       limit,
-//       total,
-//       totalPage: Math.ceil(total / limit),
-//     },
-//     data: machines,
-//   };
-// };
-
-// const getSingleMachineFromDB = async (id: string) => {
-//   return Machine_Model.findById(id);
-// };
 const getSingleMachineFromDB = async (id: string) => {
   const machine = await Machine_Model.findById(id).lean();
 
