@@ -8,7 +8,7 @@ async function main() {
   // seed admin credential
   //   seedAdmin();
   //   start server
-  app.listen(configs.port, () => {
+  app.listen(configs.port as any, configs.ip.backend_ip as any, () => {
     console.log(`Server listening on port ${configs.port}`);
   });
 }
