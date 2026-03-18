@@ -26,15 +26,22 @@ export const swaggerOptions = {
       ...machineSwaggerDocs,
       ...investorSwaggerDocs,
       ...maintenanceSwaggerDocs,
-    
-            ...contactSwaggerDocs,
-            ...privacySwaggerDocs,
-            ...voteSwaggerDocs,
-            ...machineRevenueSwaggerDocs,},
+
+      ...contactSwaggerDocs,
+      ...privacySwaggerDocs,
+      ...voteSwaggerDocs,
+      ...machineRevenueSwaggerDocs,
+    },
     servers:
       configs.env === "production"
-        ? [{ url: "https://live-url.com" }, { url: "http://localhost:5000" }]
-        : [{ url: "http://localhost:5000" }, { url: "https://live-url.com" }],
+        ? [
+            { url: "http://206.162.244.11:5000" },
+            { url: "http://localhost:5000" },
+          ]
+        : [
+            { url: "http://localhost:5000" },
+            { url: "http://206.162.244.11:5000" },
+          ],
     components: {
       securitySchemes: {
         bearerAuth: {
