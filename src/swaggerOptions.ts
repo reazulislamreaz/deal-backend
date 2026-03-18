@@ -36,10 +36,10 @@ export const swaggerOptions = {
       configs.env === "production"
         ? [
             { url: "http://206.162.244.11:5000" },
-            { url: "http://206.162.244.11:5000" },
+            { url: "http://10.10.11.30:5000" },
           ]
         : [
-            { url: "http://206.162.244.11:5000" },
+            { url: "http://10.10.11.30:5000" },
             { url: "http://206.162.244.11:5000" },
           ],
     components: {
